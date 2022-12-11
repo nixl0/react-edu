@@ -1,0 +1,32 @@
+{
+    "messages": [
+        {
+            "key": 1,
+            "title": "title 1",
+            "text": "text 1",
+            "timestamp": "2022.02.02, 2:22",
+            "priority": 0
+        },
+        {
+            "key": 2,
+            "title": "title 2",
+            "text": "text 2",
+            "timestamp": "2022.02.02, 2:22",
+            "priority": 0
+        },
+        {
+            "key": 3,
+            "title": "title 4",
+            "text": "text 4",
+            "timestamp": "2022.02.02, 2:22",
+            "priority": 0
+        },
+        {
+            "key": 4,
+            "title": "title 5",
+            "text": "text 5",
+            "timestamp": "2022.02.02, 2:22",
+            "priority": 1
+        }
+    ]
+}
