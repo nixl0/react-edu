@@ -1,28 +1,33 @@
 import { useEffect, useState } from 'react'
-import AddMessageForm from './AddMessageForm'
 import Message from './Message'
-// import messages from './assets/messages.json'
+import AddMessageForm from './AddMessageForm'
+import messagesJson from './assets/messages.json'
 
 function App() {
-  const [messages, setMessages] = useState(null)
 
-  useEffect(() => {
-    fetch('http://localhost:8000/messages')
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setMessages(data)
-      })
-  }, [])
+  const [messages, setMessages] = useState(messagesJson)
+
+  const addMessage = (e, title, text) => {
+    e.preventDefault()
+
+    const freeKey = Math.max(...messages.map(message => message.key)) + 1
+
+    setMessages([...messages, {
+      key: freeKey,
+      title: title,
+      text: text,
+      timestamp: new Date().toLocaleString(navigator.language),
+      priority: 0
+    }])
+  }
 
   return (
     <div className="App">
       <h1 className='text-center'>hello world</h1>
 
-      <AddMessageForm />
+      <AddMessageForm handleAddMessageClick={addMessage} />
 
-      {messages && messages.map(message => <Message {...message} />)}
+      {messages.map(message => <Message {...message} />)}
     </div>
   )
 }

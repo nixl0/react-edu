@@ -1,30 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-function AddMessageForm() {
+function AddMessageForm({ handleAddMessageClick }) {
+
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
-  const [priority, setPriority] = useState()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    const message = {
-      title: title,
-      text: text,
-      timestamp: new Date().toLocaleString(navigator.language),
-      priority: 0
-    }
-
-    fetch('http://localhost:8000/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(message)
-    })
-  }
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='flex flex-col bg-slate-100 m-5 p-5 rounded-xl space-y-1 '>
+      <form className='flex flex-col bg-slate-100 m-5 p-5 rounded-xl space-y-1 '>
         <h1 className='text-center text-xl font-bold'>Add Message</h1>
 
         {/* title */}
@@ -48,7 +31,7 @@ function AddMessageForm() {
         />
 
         {/* add button */}
-        <button type='submit' className='text-white bg-slate-500 max-w-fit p-2 rounded-xl transition duration-200 hover:bg-slate-600'>Add</button>
+        <button onClick={(e) => handleAddMessageClick(e, title, text)} className='text-white bg-slate-500 max-w-fit p-2 rounded-xl transition duration-200 hover:bg-slate-600'>Add</button>
       </form>
     </>
   )

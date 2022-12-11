@@ -1,5 +1,3 @@
-import React from "react"
-
 function Message({ title, text, timestamp, priority }) {
   return (
     <div className={`m-3 p-3 rounded-xl ${priority && 'bg-red-50'}`}>
