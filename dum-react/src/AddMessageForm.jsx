@@ -2,8 +2,10 @@ import { useState } from 'react'
 
 function AddMessageForm({ handleAddMessageClick }) {
 
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
+  const [formFields, setFormFields] = useState({
+    title: '',
+    text: ''
+  })
 
   return (
     <>
@@ -14,24 +16,35 @@ function AddMessageForm({ handleAddMessageClick }) {
         <label>Title</label>
         <input
           type="text"
+          name="title"
           required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formFields.title}
+          onChange={(e) => setFormFields({
+            ...formFields,
+            title: e.target.value
+          })}
           className='border border-solid border-2 p-2 rounded-xl'
         />
 
         {/* text */}
         <label>Text</label>
         <textarea
+          name="text"
           rows="6"
           required
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={formFields.text}
+          onChange={(e) => setFormFields({
+            ...formFields,
+            text: e.target.value
+          })}
           className='border border-solid border-2 p-2 rounded-xl'
         />
 
+        <p>{formFields.title ? formFields.title : 'no title'}</p>
+        <p>{formFields.text ? formFields.text : 'no text'}</p>
+
         {/* add button */}
-        <button onClick={(e) => handleAddMessageClick(e, title, text)} className='text-white bg-slate-500 max-w-fit p-2 rounded-xl transition duration-200 hover:bg-slate-600'>Add</button>
+        <button onClick={(e) => handleAddMessageClick(e, formFields.title, formFields.text)} className='text-white bg-slate-500 max-w-fit p-2 rounded-xl transition duration-200 hover:bg-slate-600'>Add</button>
       </form>
     </>
   )
